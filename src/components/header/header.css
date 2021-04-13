@@ -1,0 +1,31 @@
+nav {
+    display: flex;
+    background-color: #f73378;
+    padding: 0.8rem 0rem;
+    color: white;
+}
+
+.navlogo, .navlinks {
+    flex: 1;
+    display: flex;
+    margin: auto;
+}
+
+.navlogo {
+    margin-left: 2rem;
+}
+
+.navlinks {
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
+.navlinks li {
+    list-style: none;
+    margin: 0rem 1rem;
+}
+
+.navlinks a {
+    text-decoration: none;
+    color: white;
+}

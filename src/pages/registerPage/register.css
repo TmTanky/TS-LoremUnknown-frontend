@@ -1,0 +1,15 @@
+.register {
+    min-height: 85vh;
+}
+
+.register h1 {
+    font-size: 3rem;
+}
+
+.register form {
+    padding: 5rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto 10rem;
+}

@@ -1,0 +1,66 @@
+.main1 {
+    padding: 1rem 4rem;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main1 .sect1 {
+    padding: 9rem 0rem;
+    margin: auto 2rem;
+    justify-content: center;
+}
+
+.main1 .sect1 h1 {
+    font-size: 4.5rem;
+    padding-bottom: 1rem;
+}
+
+.main1 .sect1 p {
+    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
+}
+
+.main1 .sect2 {
+    padding: 2rem 0rem;
+    margin: auto 2rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.main1 .sect2 .boxes {
+    margin: 1rem;
+    border-radius: 10px;
+    padding: 4rem;
+    background-color: white;
+    box-shadow: 0 12.5px 10px rgba(0, 0, 0, 0.06);
+    transition-property: all;
+}
+
+.main1 .sect2 .boxes:hover {
+    cursor: default;
+    transform: scale(1.1);
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+}
+
+.main1 .sect3 {
+    padding: 9rem 0rem;
+    margin: auto 2rem;
+    display: flex;
+}
+
+.main1 .sect3 .pic, .main1 .sect3 .info {
+    flex: 1;
+}
+
+.main1 .sect3 .info {
+    margin: auto 1rem;
+}
+
+.main1 .sect3 .info p {
+    font-size: 1.2rem;
+}
+
+.pic img {
+    width: 45vw;
+}

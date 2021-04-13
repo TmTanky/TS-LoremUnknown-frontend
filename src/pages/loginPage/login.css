@@ -1,0 +1,15 @@
+.login {
+    min-height: 85vh;
+}
+
+.login h1 {
+    font-size: 3rem;
+}
+
+.login form {
+    padding: 8rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto 10rem;
+}
