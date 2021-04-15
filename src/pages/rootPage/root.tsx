@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import {useHistory} from 'react-router-dom'
 
 import { Button } from '@material-ui/core'
 import Picture1 from '../../imgs/first.png'
@@ -7,12 +8,17 @@ import Picture1 from '../../imgs/first.png'
 import './root.css'
 
 const RootPage: FC = () => {
+
+    const history = useHistory()
+
     return (
         <main className="main1" >
             <section className="sect1">
                 <h1> Welcome to UnknownLorem </h1>
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste similique molestiae magni molestias veritatis illo commodi odit. Ipsum ab magni doloremque ducimus, natus consequatur, nulla inventore accusantium, aut quis quos. </p>
-                <Button color="secondary" variant="contained" > Get started </Button>
+                <Button onClick={() => {
+                    history.push('/register')
+                }} color="secondary" variant="contained" > Get started </Button>
             </section>
 
             <section className="sect2" >

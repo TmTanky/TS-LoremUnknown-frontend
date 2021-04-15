@@ -14,7 +14,7 @@ const Header: FC = () => {
 
             <div className="navlinks">
                 <li> <Link to="/login" > Login </Link> </li>
-                <li> <a href="/"> About </a> </li>
+                <li> <Link to="/about" > About </Link> </li>
 
             </div>
         </nav>
