@@ -3,7 +3,8 @@ export interface Iregister {
     lastName: string;
     username: string;
     email: string;
-    password: string
+    password: string;
+    __v?: number;
 }
 
 export interface Ilogin {
@@ -12,5 +13,27 @@ export interface Ilogin {
 }
 
 export interface Ierrors {
-    errors: string[]
+    errors: string[];
+}
+export interface IcurrentUser {
+    status: number;
+    loggedInUser: {
+        _id: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+        username: string;
+        password: string;
+    }
+    token: string;
+}
+
+export interface Iposts {
+    comments: string;
+    likes: string;
+    _id: string;
+    content: string;
+    postedBy: Iregister;
+    __v?: number;
+    isHidden: boolean;
 }

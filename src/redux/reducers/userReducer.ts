@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 type Aksyon = {
     type: string;
-    payload: string
+    payload: string;
 }
 
 export const UserReducer = (state = INITIAL_STATE, action: Aksyon) => {

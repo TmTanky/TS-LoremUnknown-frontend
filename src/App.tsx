@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux'
 // Components
 import Header from './components/header/header'
 import Footer from './components/footer/footer'
+import CreatePostNav from './components/createPostNav/createPostNav'
 
 // Pages
 import RootPage from './pages/rootPage/root'
@@ -18,12 +19,13 @@ import { IRootReducer } from './redux/reducers/rootReducer'
 
 const App: FC = () => {
 
-  const isUserLoggedIn = useSelector<IRootReducer>(state => state.isLoggedIn)
+  const isUserLoggedIn = useSelector((state: IRootReducer) => state.isLoggedIn)
 
   return (
     <div className="App">
       <BrowserRouter>
         <Header/>
+          {isUserLoggedIn ? <CreatePostNav/> : ""}
           <Switch>
             <Route exact path="/" render={() => isUserLoggedIn ? <Redirect to="/home"/> : <RootPage/> } />
             <Route path="/login" render={() => isUserLoggedIn ? <Redirect to="/home"/> : <LoginPage/> } />

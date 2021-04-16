@@ -1,11 +1,16 @@
 import {combineReducers} from 'redux'
 
+// Interfaces
+import { IcurrentUser } from '../../interface/interfaces'
+
 // Reducers
 import {UserReducer} from './userReducer'
 import {isUserLoggedIn} from './isLoggedInReducer'
 
 export interface IRootReducer {
-    user: string;
+    user: {
+        user: IcurrentUser
+    }
     isLoggedIn: boolean;
 }
 

@@ -81,7 +81,7 @@ const LoginPage: FC = () => {
 
                     {loginError.errors.length > 0 ? loginError.errors.map(err => {
                         return <Collapse in={open} key={err} style={{marginBottom: '1rem'}} >
-                            <Alert action={
+                            <Alert severity="warning" action={
                                 <IconButton
                                 aria-label="close"
                                 color="inherit"
