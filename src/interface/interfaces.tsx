@@ -30,7 +30,7 @@ export interface IcurrentUser {
 
 export interface Iposts {
     comments: string;
-    likes: string;
+    likes: Iregister[]
     _id: string;
     content: string;
     postedBy: Iregister;

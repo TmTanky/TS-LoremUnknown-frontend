@@ -13,15 +13,14 @@ import './createPostNav.css'
 import { IRootReducer } from '../../redux/reducers/rootReducer'
 
 const CreatePostNav: FC = () => {
-
-    const [checkState, setCheckState] = useState<{checkedA: boolean}>({
-        checkedA: false
-    })
     
     const userToken = useSelector((state: IRootReducer) => state.user.user.token)
     const userID = useSelector((state: IRootReducer) => state.user.user.loggedInUser)
 
     const [open, setOpen] = useState<boolean>(false)
+    const [checkState, setCheckState] = useState<{checkedA: boolean}>({
+        checkedA: false
+    })
     const [createPost, setCreatePost] = useState<{content: string, isHidden: boolean}>({
         content: "",
         isHidden: checkState.checkedA
@@ -41,10 +40,10 @@ const CreatePostNav: FC = () => {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${userToken}`
                 }
-
         })
 
         if (data.msg) {
+            console.log(data)
             setCreatePostError({
                 errors: [data.msg]
             })
@@ -59,7 +58,6 @@ const CreatePostNav: FC = () => {
     return (
         <nav className="nav2">
             <form>
-
                 {createPostError.errors.length > 0 ? createPostError.errors.map(err => {
                         return <Collapse in={open} key={err} style={{marginBottom: '1rem'}} >
                             <Alert severity="warning" action={
@@ -84,12 +82,17 @@ const CreatePostNav: FC = () => {
                 <span> <Switch
                     checked={checkState.checkedA}
                     onChange={handleChange}
-                    value={checkState}
                     name="checkedA"
                     inputProps={{ 'aria-label': 'secondary checkbox' }}
-                /> Show Name </span>
+                /> Hide Name </span>
                 <Button onClick={() => {
-                    
+                    setCreatePost({
+                        content: "",
+                        isHidden: checkState.checkedA
+                    })
+                    setCreatePostError({
+                        errors: []
+                    })
                     createNewPost()
                 }} style={{marginTop: '0.5rem'}} color="secondary" variant="contained" > Post </Button>
             </form>
