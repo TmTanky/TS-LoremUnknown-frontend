@@ -22,3 +22,46 @@
     padding: 0rem 1.5rem;
     display: flex;
 }
+
+.postsettings {
+    display: flex;
+    justify-content: flex-end;
+}
+
+li {
+    list-style: none;
+}
+
+.viewcomments {
+    width: 100px;
+}
+
+.viewcomments:hover {
+    color: brown;
+    cursor: pointer;
+}
+
+.bobo {
+    background-color: transparent;
+    border-radius: 5px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.bobo form {
+    padding: 2rem 4rem;
+    background-color: white;
+    border-radius: 5px;
+    margin: auto;
+}
+
+.editpost {
+    display: flex;
+    flex-direction: column;
+}

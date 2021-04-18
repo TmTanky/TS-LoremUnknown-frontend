@@ -7,6 +7,7 @@ import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import CloseIcon from '@material-ui/icons/Close';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 // CSS
 import './createPostNav.css'
@@ -18,24 +19,24 @@ const CreatePostNav: FC = () => {
     const userID = useSelector((state: IRootReducer) => state.user.user.loggedInUser)
 
     const [open, setOpen] = useState<boolean>(false)
-    const [checkState, setCheckState] = useState<{checkedA: boolean}>({
-        checkedA: false
-    })
-    const [createPost, setCreatePost] = useState<{content: string, isHidden: boolean}>({
-        content: "",
-        isHidden: checkState.checkedA
+
+    const [isHidden, setIsHidden] = useState(false);
+    
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsHidden(!isHidden)
+    };
+
+    const [createPost, setCreatePost] = useState<{content: string}>({
+        content: ""
     })
     const [createPostError, setCreatePostError] = useState<{errors: string[]}>({
         errors: []
     })
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setCheckState({ ...checkState, [e.target.name]: e.target.checked });
-    }
 
     const createNewPost = async () => {
         try {
 
-            const {data} = await axios.post(`http://localhost:8000/createpost/${userID._id}`, {createPost}, {
+            const {data} = await axios.post(`http://localhost:8000/createpost/${userID._id}`, {createPost, isHidden}, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${userToken}`
@@ -78,22 +79,26 @@ const CreatePostNav: FC = () => {
                     </Collapse>
                 }): ""}
 
-                <TextareaAutosize value={createPost.content} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setCreatePost({content: e.target.value, isHidden: checkState.checkedA})} className="createpost" rowsMin={3} />
-                <span> <Switch
-                    checked={checkState.checkedA}
-                    onChange={handleChange}
-                    name="checkedA"
-                    inputProps={{ 'aria-label': 'secondary checkbox' }}
-                /> Hide Name </span>
+                <TextareaAutosize value={createPost.content} placeholder="Share something..." onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setCreatePost({content: e.target.value })} className="createpost" rowsMin={3} />
+                <span> <FormControlLabel
+                    control={
+                    <Switch
+                        checked={isHidden}
+                        onChange={handleChange}
+                        name="checkedB"
+                        color="secondary"
+                    />
+                    }
+                    label="Hide Name"
+                /> </span>
                 <Button onClick={() => {
+                    createNewPost()
                     setCreatePost({
-                        content: "",
-                        isHidden: checkState.checkedA
+                        content: ""
                     })
                     setCreatePostError({
                         errors: []
                     })
-                    createNewPost()
                 }} style={{marginTop: '0.5rem'}} color="secondary" variant="contained" > Post </Button>
             </form>
         </nav>

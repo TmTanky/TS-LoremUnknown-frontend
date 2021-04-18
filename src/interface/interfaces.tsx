@@ -1,4 +1,5 @@
 export interface Iregister {
+    _id?: string;
     firstName: string;
     lastName: string;
     username: string;
@@ -28,9 +29,17 @@ export interface IcurrentUser {
     token: string;
 }
 
+export interface Icomments {
+    _id: string;
+    comment: string;
+    commentBy: Iregister;
+    commentLikes: Iregister[];
+    replies: Iregister[]
+}
+
 export interface Iposts {
-    comments: string;
-    likes: Iregister[]
+    comments: Icomments[];
+    likes: Iregister[];
     _id: string;
     content: string;
     postedBy: Iregister;

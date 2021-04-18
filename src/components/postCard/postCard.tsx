@@ -1,4 +1,4 @@
-import {FC, useRef, useState} from 'react'
+import {ChangeEvent, FC, useRef, useState} from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux';
 
@@ -6,10 +6,19 @@ import { useSelector } from 'react-redux';
 import { Iposts } from '../../interface/interfaces'
 import { IRootReducer } from '../../redux/reducers/rootReducer';
 
-import { TextField } from '@material-ui/core'
+import { TextField, Button } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import InsertCommentIcon from '@material-ui/icons/InsertComment';
 import SendIcon from '@material-ui/icons/Send';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import Box from '@material-ui/core/Box';
+import Popover from '@material-ui/core/Popover';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import Slide from '@material-ui/core/Slide';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+
+// Components
+import CommentsOnPost from '../../components/commentsOnPosts/commentsOnPost'
 
 // CSS
 import './postCard.css'
@@ -22,6 +31,18 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
     const [trigger, setTrigger] = useState<{appear: boolean}>({
         appear: false
     })
+    const [editPostContent, setEditPostContent] = useState<{newContent: string}>({
+        newContent: ""
+    })
+    const [openComments, setOpenComments] = useState(false)
+    const [checked, setChecked] = useState(false);
+    const [editPostTrigger, setEditPostTrigger] = useState(false)
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setEditPostContent({
+            newContent: e.target.value
+        })
+    };
 
     const likePost = async (postID: string ) => {
         try {
@@ -43,20 +64,114 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
         }
     }
 
+    const deletePost = async (postID: string) => {
+        try {
 
+            const {data} = await axios.delete(`http://localhost:8000/deletepost/${postID}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${userToken}`
+                }
+            })
+
+            console.log(data.msg)
+            
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const updatePost = async (postID: string) => {
+
+        const {newContent} = editPostContent
+        
+        try {
+            
+            const {data} = await axios.patch(`http://localhost:8000/updatepost/${postID}`, {newContent}, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${userToken}`
+                }    
+            })
+
+            if (data.msg === "Content Updated.") {
+                setEditPostTrigger(false)
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+        
+    }
 
     return (
         <div className="postcard" >
+            {user._id === postedBy._id ? <div className="postsettings">
+                <PopupState variant="popover" popupId="demo-popup-popover">
+                    {(onpopupState) => (
+                        <div>
+                        <MoreHorizIcon style={{cursor: 'pointer'}} {...bindTrigger(onpopupState)} />
+                        <Popover
+                            {...bindPopover(onpopupState)}
+                            anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                            }}
+                        >
+                            <Box className="Box" p={2}>
+                                <li style={{cursor: 'pointer', margin: '0.5rem 0'}} onClick={() => setEditPostTrigger(true)} > Edit </li>
+                                <li style={{cursor: 'pointer', margin: '0.5rem 0'}} onClick={() => {
+                                    setChecked(true)
+                                } } > Delete </li>
+                            </Box>
+                        </Popover>
+                        </div>
+                    )}
+                </PopupState>
+                <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
+                    <div className="bobo" >
+                        <form>
+                            <h1> Delete post? </h1>
+                            <span style={{margin: 'auto'}} > <Button variant="contained" onClick={() => deletePost(_id) } color="secondary" > Delete </Button> <Button variant="contained" onClick={() => setChecked(false)} color="primary" > Cancel </Button> </span>
+                        </form>
+                    </div>
+                </Slide>
+            </div> : ""}
+
             {isHidden ? <h1> Anonymous </h1> : <h1> {postedBy.firstName} {postedBy.lastName} </h1> }
-            <p> {content} </p>
+
+            {!editPostTrigger ? <p> {content} </p> : 
+                <form className="editpost">
+                    <TextField defaultValue={content} onChange={handleChange} />
+                    <span style={{marginTop: '1rem'}}> <Button onClick={ async () => {
+                        if (editPostContent.newContent === "") {
+                            setEditPostContent({ newContent: content })
+                        }
+                        updatePost(_id)
+                    }} color="secondary" variant="contained" > Done </Button> <Button color="primary" variant="contained" onClick={() => setEditPostTrigger(false)} > Cancel </Button> </span>
+                </form>
+            }
+
             <div className="reactsandcomments">
-                <FavoriteIcon style={{marginRight: '0.8rem'}} onClick={() => {
+                {likes.filter(item => item._id === user._id).length === 1 ? <FavoriteIcon style={{marginRight: '0.8rem'}} onClick={() => {
                     likePost(_id)
-                }} /> 
+                }} /> : <FavoriteBorderIcon style={{marginRight: '0.8rem'}} onClick={() => {
+                    likePost(_id)
+                }} /> }
+                
                 <InsertCommentIcon onClick={() => {
                     setTrigger({appear: !trigger.appear})
-                }} style={{marginRight: '0.2rem'}} />
+                }} style={{marginRight: '0.2rem', cursor: 'pointer'}} />
             </div>
+
+            <p className="viewcomments" onClick={() => setOpenComments(true)} style={{fontSize: '0.8rem', textDecoration: 'underline', marginBottom: '0.3rem'}} > View comments </p>
+
+            <CommentsOnPost toggle={setOpenComments} comments={comments} openComments={openComments} />
+
             <span> <p> Likes {likes.length} </p> <p> Comments {comments.length} </p> </span>
             {trigger.appear ? <form className="commenonpost">
                 <TextField placeholder="Write a comment." onChange={e => comment.current = e.target.value} style={{width: '96%', marginTop: '0.5rem'}} />
@@ -77,8 +192,8 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
                     } catch (err) {
                         console.log(err)
                     }
-                    // comment.current = ""
-                }} style={{marginLeft: '0.5rem'}} />
+
+                }} style={{marginLeft: '0.5rem', cursor: 'pointer'}} />
             </form> : ""}
         </div>
     )

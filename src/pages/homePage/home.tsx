@@ -12,6 +12,7 @@ import './home.css'
 
 const HomePage: FC = () => {
 
+    let isMounted = true
     const [allPost, setAllPost] = useState<{data: Iposts[]}>({
         data: []
     })
@@ -20,14 +21,18 @@ const HomePage: FC = () => {
         const getAllPost = async () => {
             const {data} = await axios.get<{data: Iposts[]}>('http://localhost:8000/getallpost')
 
-            setAllPost({
-                data: data.data
-            })
+            if (isMounted) {
+                setAllPost({
+                    data: data.data
+                })
+            }
         }
 
         getAllPost()
 
-    }, [allPost])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        return () => { isMounted = false }
+    }, [allPost, isMounted])
 
     return (
         <div className="homebox" >
