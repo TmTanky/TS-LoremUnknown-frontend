@@ -26,6 +26,22 @@
 .onecomment {
     padding: 0.5rem 1rem;
     border-radius: 10px;
+    display: flex;
     background-color: #EEEE;
     margin: 0.3rem;
+}
+
+.commentdetail {
+    flex: 3;
+}
+
+.commentdetail h2 {
+    margin-bottom: 0.5rem;
+}
+
+.commentreact {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
 }

@@ -157,9 +157,9 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
             }
 
             <div className="reactsandcomments">
-                {likes.filter(item => item._id === user._id).length === 1 ? <FavoriteIcon style={{marginRight: '0.8rem'}} onClick={() => {
+                {likes.filter(item => item._id === user._id).length === 1 ? <FavoriteIcon style={{marginRight: '0.8rem', cursor: 'pointer'}} onClick={() => {
                     likePost(_id)
-                }} /> : <FavoriteBorderIcon style={{marginRight: '0.8rem'}} onClick={() => {
+                }} /> : <FavoriteBorderIcon style={{marginRight: '0.8rem', cursor: 'pointer'}} onClick={() => {
                     likePost(_id)
                 }} /> }
                 
