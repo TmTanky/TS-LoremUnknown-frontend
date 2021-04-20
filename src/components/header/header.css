@@ -20,6 +20,10 @@ nav {
     margin-right: 2rem;
 }
 
+.linkers {
+    display: flex;
+}
+
 .navlinks li {
     list-style: none;
     margin: 0rem 1rem;
@@ -29,3 +33,11 @@ nav {
     text-decoration: none;
     color: white;
 }
+
+@media screen and (max-width: 600px) {
+    .linkers {
+        display: none;
+    }
+}
+
+

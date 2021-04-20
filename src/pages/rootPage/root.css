@@ -6,35 +6,40 @@
 }
 
 .main1 .sect1 {
-    padding: 9rem 0rem;
+    padding: 9rem 1rem;
     margin: auto 2rem;
     justify-content: center;
 }
 
 .main1 .sect1 h1 {
-    font-size: 4.5rem;
+    font-size: 5vw;
     padding-bottom: 1rem;
 }
 
 .main1 .sect1 p {
-    font-size: 1.2rem;
+    font-size: 2vw;
     padding-bottom: 0.5rem;
 }
 
 .main1 .sect2 {
     padding: 2rem 0rem;
-    margin: auto 2rem;
+    margin: auto 0;
     display: flex;
     justify-content: space-evenly;
 }
 
 .main1 .sect2 .boxes {
-    margin: 1rem;
+    margin: 2rem;
     border-radius: 10px;
-    padding: 4rem;
+    padding: 4rem 6vw ;
     background-color: white;
     box-shadow: 0 12.5px 10px rgba(0, 0, 0, 0.06);
     transition-property: all;
+}
+
+.main1 .sect2 .boxes p {
+    text-align: left;
+    font-size: 1.3rem;
 }
 
 .main1 .sect2 .boxes:hover {
@@ -44,17 +49,22 @@
 }
 
 .main1 .sect3 {
-    padding: 9rem 0rem;
+    padding: 6rem 0rem;
     margin: auto 2rem;
     display: flex;
 }
 
 .main1 .sect3 .pic, .main1 .sect3 .info {
     flex: 1;
+    padding: 2rem;
+}
+
+.main1 .sect3 .pic {
+    margin: auto;
 }
 
 .main1 .sect3 .info {
-    margin: auto 1rem;
+    margin: auto;
 }
 
 .main1 .sect3 .info p {
@@ -63,4 +73,90 @@
 
 .pic img {
     width: 45vw;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .main1 {
+        padding: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+
+    .main1 {
+        padding: 1rem;
+    }
+
+    .main1 .sect1 {
+        margin: auto 1rem;
+    }
+    
+    .main1 .sect2 {
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+
+    .main1 .sect3 {
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+
+    .main1 .sect1 h1 {
+        font-size: 8vw;
+    }
+
+    .main1 .sect1 p {
+        font-size: 4vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .main1 .sect1 {
+        padding: 6rem 1rem;
+        margin: auto 0;
+    }
+
+    .main1 .sect1 h1 {
+        font-size: 9vw;
+    }
+
+    .main1 .sect1 p {
+        font-size: 5vw;
+    }
+
+    .main1 .sect3 {
+        margin: auto 1rem;
+    }
+
+    .main1 .sect3 .pic, .main1 .sect3 .info {
+        padding: 1rem;
+    }
+    
+    .main1 .sect3 .pic img {
+        width: 72vw;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+
+    .main1 {
+        padding: 0.5rem;
+    }
+
+    .main1 .sect2 .boxes {
+        margin: 1rem;
+        border-radius: 10px;
+        padding: 4rem 1rem;
+    }
+
 }

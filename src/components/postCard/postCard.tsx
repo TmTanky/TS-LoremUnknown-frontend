@@ -1,4 +1,4 @@
-import {ChangeEvent, FC, useRef, useState} from 'react'
+import {ChangeEvent, FC, useRef, useState, useEffect} from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux';
 
@@ -37,6 +37,14 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
     const [openComments, setOpenComments] = useState(false)
     const [checked, setChecked] = useState(false);
     const [editPostTrigger, setEditPostTrigger] = useState(false)
+
+    useEffect(() => {
+        if (openComments) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+    })
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEditPostContent({
@@ -173,7 +181,7 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
             <CommentsOnPost toggle={setOpenComments} comments={comments} openComments={openComments} />
 
             <span> <p> Likes {likes.length} </p> <p> Comments {comments.length} </p> </span>
-            {trigger.appear ? <form className="commenonpost">
+            {trigger.appear ? <form className="commentonpost">
                 <TextField placeholder="Write a comment." onChange={e => comment.current = e.target.value} style={{width: '96%', marginTop: '0.5rem'}} />
                 <SendIcon onClick={async () => {
                     try {

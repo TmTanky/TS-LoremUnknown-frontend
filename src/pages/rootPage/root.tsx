@@ -15,23 +15,23 @@ const RootPage: FC = () => {
         <main className="main1" >
             <section className="sect1">
                 <h1> Welcome to UnknownLorem </h1>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste similique molestiae magni molestias veritatis illo commodi odit. Ipsum ab magni doloremque ducimus, natus consequatur, nulla inventore accusantium, aut quis quos. </p>
-                <Button onClick={() => {
+                <p> A place where you can communicate with other people. It's the next generation application! </p>
+                <Button style={{marginTop: '1rem'}} onClick={() => {
                     history.push('/register')
                 }} color="secondary" variant="contained" > Get started </Button>
             </section>
 
             <section className="sect2" >
                 <div className="box1 boxes">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia doloremque similique necessitatibus id nihil cumque eaque, ipsam suscipit velit porro? </p>
+                    <p> You can create a post, edit and delete!  </p>
                 </div>
 
                 <div className="box2 boxes">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia doloremque similique necessitatibus id nihil cumque eaque, ipsam suscipit velit porro? </p>
+                    <p> You can hide your name just by activating the hide name switch. </p>
                 </div>
 
                 <div className="box3 boxes">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia doloremque similique necessitatibus id nihil cumque eaque, ipsam suscipit velit porro? </p>
+                    <p> You can comment on a post, and also like a comment! </p>
                 </div>
             </section>
 
@@ -41,7 +41,7 @@ const RootPage: FC = () => {
                 </div>
 
                 <div className="info">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptate aperiam cupiditate unde magni animi quisquam alias, magnam enim laboriosam! Accusamus quos eum blanditiis culpa. </p>
+                    <p> This web application is a MERN stack also comes with the power of Typescript. Typescript is a powerful tool that significantly improves the reliability of the javascript code. </p>
                 </div>
             </section>
         </main>

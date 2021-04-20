@@ -19,7 +19,7 @@
 }
 
 .commentonpost {
-    padding: 0rem 1.5rem;
+    padding: 0rem;
     display: flex;
 }
 
@@ -45,6 +45,7 @@ li {
     background-color: transparent;
     border-radius: 5px;
     position: fixed;
+    z-index: 5;
     top: 0;
     right: 0;
     bottom: 0;
@@ -65,3 +66,4 @@ li {
     display: flex;
     flex-direction: column;
 }
+

@@ -7,9 +7,16 @@
 }
 
 .login form {
-    padding: 8rem 0rem;
+    padding: 8rem 0;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: auto 10rem;
+    margin: auto;
+}
+
+@media screen and (max-width: 650px) {
+    .login form {
+        width: 90%;
+    }
 }

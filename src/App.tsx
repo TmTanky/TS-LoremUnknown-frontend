@@ -13,7 +13,6 @@ import LoginPage from './pages/loginPage/login'
 import RegisterPage from './pages/registerPage/register'
 import AboutPage from './pages/aboutPage/about'
 import HomePage from './pages/homePage/home'
-import Try from './pages/try/try'
 
 // Redux
 import { IRootReducer } from './redux/reducers/rootReducer'
@@ -28,7 +27,6 @@ const App: FC = () => {
         <Header/>
           {isUserLoggedIn ? <CreatePostNav/> : ""}
           <Switch>
-            <Route path="/try" component={Try} />
             <Route exact path="/" render={() => isUserLoggedIn ? <Redirect to="/home"/> : <RootPage/> } />
             <Route path="/login" render={() => isUserLoggedIn ? <Redirect to="/home"/> : <LoginPage/> } />
             <Route path="/register" render={() => isUserLoggedIn ? <Redirect to="/home"/> : <RegisterPage/> } />
