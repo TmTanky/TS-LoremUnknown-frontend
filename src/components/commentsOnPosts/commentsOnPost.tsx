@@ -25,7 +25,7 @@ const CommentsOnPost: FC<{openComments: boolean, toggle: Function, comments: Ico
         
         try {
 
-            const {data} = await axios.patch(`http://localhost:8000/reacttocomment/${commentID}`, userID, {
+            const {data} = await axios.patch(`https://unknown-lorem-api.herokuapp.com/reacttocomment/${commentID}`, userID, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${userToken}`

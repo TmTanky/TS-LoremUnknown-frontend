@@ -55,7 +55,7 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
     const likePost = async (postID: string ) => {
         try {
 
-            const {data} = await axios.post(`http://localhost:8000/likedapost/${postID}`, user, {
+            const {data} = await axios.post(`https://unknown-lorem-api.herokuapp.com/likedapost/${postID}`, user, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${userToken}`
@@ -75,7 +75,7 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
     const deletePost = async (postID: string) => {
         try {
 
-            const {data} = await axios.delete(`http://localhost:8000/deletepost/${postID}`, {
+            const {data} = await axios.delete(`https://unknown-lorem-api.herokuapp.com/deletepost/${postID}`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${userToken}`
@@ -95,7 +95,7 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
         
         try {
             
-            const {data} = await axios.patch(`http://localhost:8000/updatepost/${postID}`, {newContent}, {
+            const {data} = await axios.patch(`https://unknown-lorem-api.herokuapp.com/updatepost/${postID}`, {newContent}, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${userToken}`

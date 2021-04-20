@@ -36,7 +36,7 @@ const CreatePostNav: FC = () => {
     const createNewPost = async () => {
         try {
 
-            const {data} = await axios.post(`http://localhost:8000/createpost/${userID._id}`, {createPost, isHidden}, {
+            const {data} = await axios.post(`https://unknown-lorem-api.herokuapp.com/createpost/${userID._id}`, {createPost, isHidden}, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${userToken}`

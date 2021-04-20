@@ -25,7 +25,7 @@ const Header: FC = () => {
     const [openSideBar, setOpenSideBar] = useState(false)
 
     const logoutUser =  async () => {
-        await axios.get('http://localhost:8000/logout')
+        await axios.get('https://unknown-lorem-api.herokuapp.com/logout')
     }
 
     return (

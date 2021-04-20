@@ -19,7 +19,7 @@ const HomePage: FC = () => {
 
     useEffect(() => {
         const getAllPost = async () => {
-            const {data} = await axios.get<{data: Iposts[]}>('http://localhost:8000/getallpost')
+            const {data} = await axios.get<{data: Iposts[]}>('https://unknown-lorem-api.herokuapp.com/getallpost')
 
             if (isMounted) {
                 setAllPost({

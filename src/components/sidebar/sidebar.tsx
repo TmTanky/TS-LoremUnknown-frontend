@@ -22,7 +22,7 @@ const SideBar: FC<{toggle: boolean, setToggle: Function}> = ({toggle, setToggle}
     const isUserLoggedIn = useSelector((state: IRootReducer) => state.isLoggedIn)
 
     const logoutUser =  async () => {
-        await axios.get('http://localhost:8000/logout')
+        await axios.get('https://unknown-lorem-api.herokuapp.com/logout')
     }
 
     return (

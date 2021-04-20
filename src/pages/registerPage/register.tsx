@@ -49,7 +49,7 @@ const RegisterPage: FC = () => {
 
     const submitRegister: () => void = async () => {
         
-        const {data} = await axios.post('http://localhost:8000/register', register, {
+        const {data} = await axios.post('https://unknown-lorem-api.herokuapp.com/register', register, {
             headers: {
                 "Content-Type": "application/json"
             }

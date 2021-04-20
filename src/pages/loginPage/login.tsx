@@ -51,7 +51,7 @@ const LoginPage: FC = () => {
         
         try {
 
-            const {data} = await axios.post<IUserData>('http://localhost:8000/login', login, {
+            const {data} = await axios.post<IUserData>('https://unknown-lorem-api.herokuapp.com/login', login, {
                 headers: {
                     "Content-Type": "application/json"
                 }
