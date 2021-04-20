@@ -186,7 +186,7 @@ const PostCard: FC<Iposts> = ({_id, content, postedBy, isHidden, comments, likes
                 <SendIcon onClick={async () => {
                     try {
 
-                        const {data} = await axios.post(`http://localhost:8000/commentinpost/${_id}`, {user, comment}, {
+                        const {data} = await axios.post(`https://unknown-lorem-api.herokuapp.com/commentinpost/${_id}`, {user, comment}, {
                             headers: {
                                 "Content-Type": "application/json",
                                 "Authorization": `Bearer ${userToken}`
